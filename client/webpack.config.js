@@ -27,18 +27,13 @@ let confDev = {
                 use: [
                     'file-loader',
                     {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            disable: true, // webpack@2.x and newer
-                        },
+                        loader: 'image-webpack-loader'
                     },
                 ],
             }, 
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader'
-                    ]
+                loader: 'file-loader?name=/fonts/[name].[ext]'
             }
         ]
     },
@@ -107,8 +102,7 @@ let confProd = {
             chunkFilename: '[id].css',
         }),
         new CopyPlugin([
-            { from: 'src/fonts', to: 'assets/fonts/[name].[hash].[ext]'},
-            { from: 'src/img', to: 'assets/img'}
+            { from: 'assets', to: 'assets'},
         ]),
         new webpack.HotModuleReplacementPlugin()
     ],

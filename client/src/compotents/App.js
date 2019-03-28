@@ -29,7 +29,7 @@ class App extends React.Component{
                     <div className="category-container">
                         <div className="category-item-wrapper">
                             <div className="category-item-content">
-                                <img src="../../img/icon/category/butovay_texnika.svg" alt="" />
+                                <img src="./assets/img/icon/category/butovay_texnika.svg" alt="" />
                                 <a href="#">category</a>
                             </div>
                         </div>
