@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 let confDev = {
     entry: './src/index.js',
@@ -20,6 +21,24 @@ let confDev = {
                     "sass-loader"
                 ]
 
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            disable: true, // webpack@2.x and newer
+                        },
+                    },
+                ],
+            }, 
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                    ]
             }
         ]
     },
@@ -87,6 +106,10 @@ let confProd = {
             filename: 'css/[name].css',
             chunkFilename: '[id].css',
         }),
+        new CopyPlugin([
+            { from: 'src/fonts', to: 'assets/fonts/[name].[hash].[ext]'},
+            { from: 'src/img', to: 'assets/img'}
+        ]),
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
