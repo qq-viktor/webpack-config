@@ -11,7 +11,6 @@ const PATHS = {
 };
 
 module.exports = {
-    // BASE config
     externals: {
         paths: PATHS
     },
@@ -21,7 +20,6 @@ module.exports = {
     output: {
         filename: `${PATHS.assets}js/[name].js`,
         path: PATHS.dist,
-        publicPath: './'
     },
     module: {
         rules: [{
@@ -34,6 +32,13 @@ module.exports = {
             options: {
                 name: '[name].[ext]'
             }
+        }, {
+            test: /\.(ttf|eot|svg|otf|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            exclude: /node_modules/,
+            loader: 'file-loader',
+            options: {
+                name: `${PATHS.assets}fonts/[name].[ext]`
+            },
         }, {
             test: /\.scss$/,
             use: [
@@ -50,13 +55,6 @@ module.exports = {
                     options: {sourceMap: true}
                 }
             ]
-        }, {
-            test: /\.(ttf|eot|svg|otf|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            exclude: /node_modules/,
-            loader: 'file-loader',
-            options: {
-                name: `../fonts/[name].[ext]`
-            }
         }]
     },
     plugins: [
@@ -71,6 +69,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {from: `${PATHS.src}/img`, to: `${PATHS.assets}img`},
+            {from: `${PATHS.src}/fonts`, to: `${PATHS.assets}css/assets/fonts`},
             {from: `${PATHS.src}/static`, to: ''},
         ])
     ],

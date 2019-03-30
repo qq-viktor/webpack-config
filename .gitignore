@@ -3,4 +3,6 @@
 /client/node_modules
 /client/package-lock.json
 /client/.idea
+/client/.vs
+/client/dist
 /server/.idea
