@@ -1,14 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App'
+import Hello from './js/common'
 
-const title = `Hello world, react!!!11`;
+const qqq = (a,b) => a*b;
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app')
-);
+console.log( qqq(10,2) );
 
-module.hot.accept();
+console.log(Hello)
 
-import './sass/app.sass';
+import './scss/app.scss';
